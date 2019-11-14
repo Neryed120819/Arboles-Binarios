@@ -16,6 +16,7 @@ void agregarNodo(Nodo *&,int);
 void mostrarArbol(Nodo *,int);
 void preOrden(Nodo*);
 void enOrden(Nodo *);
+void postOrden(Nodo *);
 
 Nodo *arbol = NULL;
 
@@ -36,7 +37,8 @@ void menu(){
 		cout<<"2.-Mostrar arbol"<<endl;
 		cout<<"3-Preorden"<<endl;
 		cout<<"4-En Orden"<<endl;
-		cout<<"5-Salir"<<endl;
+		cout<<"5-En PostOrden"<<endl;
+		cout<<"6-Salir"<<endl;
 		cout<<"Elige una opcion: ";
 		cin>>opcion;
 		
@@ -61,9 +63,14 @@ void menu(){
 					cout<<"\n\n";
 					system("pause");
 					break;
+			case 5: cout<<"Recorrido en PostOrden: ";
+					postOrden(arbol);
+					cout<<"\n\n";
+					system("pause");
+					break;
 		}
 		system("cls");
-	}while(opcion != 5);
+	}while(opcion != 6);
 }
 
 //Funcionp para crear un nuevo nodo
@@ -127,5 +134,16 @@ void enOrden(Nodo *arbol){
 		enOrden(arbol->izq);
 		cout<<arbol->dato<<" - ";
 		enOrden(arbol->der);
+	}
+}
+//Funcion en postOrden
+void postOrden(Nodo *arbol){
+	if(arbol == NULL){
+		return;
+	}
+	else{
+		enOrden(arbol->izq);
+		enOrden(arbol->der);
+		cout<<arbol->dato<<" - ";
 	}
 }
